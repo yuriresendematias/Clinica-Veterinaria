@@ -2,7 +2,7 @@ package negocio;
 
 import java.time.LocalDate;
 import dados.IrepositorioPessoas;
-import excecoes.RecepcionistaNaoCadastradoExeption;
+import excecoes.PessoaNaoCadastradoException;
 
 public abstract class Funcionario extends Pessoa {
     private String senha;
@@ -18,14 +18,13 @@ public abstract class Funcionario extends Pessoa {
      * @param senha
      * @return True se a senha e o login passados como parametro forem igual ao login e a senha do funcionario
      */
-    public static Funcionario login(String cpf, String senha, IrepositorioPessoas r) throws RecepcionistaNaoCadastradoExeption{
-        Funcionario f = null;
+    public static Funcionario login(String cpf, String senha, IrepositorioPessoas r) throws PessoaNaoCadastradoException{
     	if(r.getPessoa(cpf) instanceof Funcionario) {
-        	  f = (Funcionario)r.getPessoa(cpf);
+        	  return (Funcionario)r.getPessoa(cpf);
         }else {
-        	throw new RecepcionistaNaoCadastradoExeption();
+        	throw new PessoaNaoCadastradoException();
         }
-        return f;
+       
     }
 
 

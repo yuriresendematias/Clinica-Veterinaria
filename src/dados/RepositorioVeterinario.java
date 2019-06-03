@@ -2,6 +2,7 @@ package dados;
 
 import java.util.ArrayList;
 
+import excecoes.PessoaNaoCadastradoException;
 import negocio.Pessoa;
 import negocio.Veterinario;
 
@@ -35,12 +36,16 @@ public class RepositorioVeterinario implements IrepositorioPessoas{
 
 
 	@Override
-	public Pessoa getPessoa(String cpf) {
+	public Pessoa getPessoa(String cpf) throws PessoaNaoCadastradoException{
 		for(Veterinario v : this.lista) {
 			if(v.getCpf().equals(cpf)) {
 				return v;
 			}
 		}
-		return null;
+		throw new PessoaNaoCadastradoException();
+	}
+	@Override
+	public IrepositorioPessoas iniciar() {
+		return new RepositorioVeterinario();
 	}
 }

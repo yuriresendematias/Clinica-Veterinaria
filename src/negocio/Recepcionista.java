@@ -3,6 +3,8 @@ package negocio;
 import java.time.LocalDate;
 
 import dados.RepositorioCliente;
+import excecoes.PessoaJaCadastradaException;
+import excecoes.PessoaNaoCadastradoException;
 import negocio.clinica.Procedimento;
 
 public class Recepcionista extends Funcionario {
@@ -18,8 +20,13 @@ public class Recepcionista extends Funcionario {
     	v.adicionarProcedimento(p);
     }
     
-    public void cadastrarCliente(Cliente c, RepositorioCliente r){
-        r.add(c);
+    public void cadastrarCliente(Cliente c, RepositorioCliente r) throws PessoaJaCadastradaException{
+    	try {
+    		r.getPessoa(c.getCpf());								//se o cliente ja esta cadastrado
+    		throw new PessoaJaCadastradaException();				//lança uma exeção de PessoaJaCadastrado
+    	}catch (PessoaNaoCadastradoException e){					//caso o CLinte nao esteja cadastrado
+            r.add(c);												//adiciona o cliente no repositorio
+    	}
     }
 
     public void atualizarCliente(Cliente c, Cliente novo, RepositorioCliente r){

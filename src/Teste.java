@@ -13,6 +13,8 @@ public class Teste {
     	
         FachadaRecepcionista recep = new FachadaRecepcionista("123", "321");
         
-        System.out.println(recep.getRecepcionista().toString());
+        recep.cadastrarCliente("nome", "cpf"," fone", LocalDate.now(), "tipoLogradouro", "nomeLogradouro", "num", "bairro", "cep", "cidade", "estado", "pais");
+        recep.cadastrarAnimal("cpf", "nomeAnimal", "raca", LocalDate.now());
+        
     }
 }

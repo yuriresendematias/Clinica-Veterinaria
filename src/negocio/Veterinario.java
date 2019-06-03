@@ -32,6 +32,8 @@ public class Veterinario extends Funcionario{
 		r.remover(p);
 	}
 	
-	
+	public ArrayList<Procedimento> getListaDeProcedimentos() {
+		return listaDeProcedimentos;
+	}
 
 }

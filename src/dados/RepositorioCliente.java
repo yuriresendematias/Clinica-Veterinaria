@@ -2,6 +2,7 @@ package dados;
 
 import java.util.ArrayList;
 
+import excecoes.PessoaNaoCadastradoException;
 import negocio.Cliente;
 import negocio.Pessoa;
 
@@ -30,11 +31,17 @@ public class RepositorioCliente implements IrepositorioPessoas {
     }
 
     @Override
-    public Pessoa getPessoa(String cpf) {
+    public Pessoa getPessoa(String cpf) throws PessoaNaoCadastradoException{
+  
         for(Cliente c : lista){
             if(c.getCpf().equals(cpf))
                 return c;
         }
-        return null;
+        throw new PessoaNaoCadastradoException();
+    }
+    
+    @Override
+    public IrepositorioPessoas iniciar() {
+    	return new RepositorioCliente();
     }
 }

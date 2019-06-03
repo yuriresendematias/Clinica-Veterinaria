@@ -12,7 +12,7 @@ public class Animal {
 	private ArrayList<Procedimento> historico;
 	private Cliente dono;
 
-	public Animal(String nome, Cliente dono, LocalDate dn) {
+	public Animal(String nome, String raca, Cliente dono, LocalDate dn) {
 		this.historico = new ArrayList<Procedimento>();
 		this.nome = nome;
 		this.dono = dono;

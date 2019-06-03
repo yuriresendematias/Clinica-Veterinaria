@@ -1,19 +1,28 @@
 package negocio;
 
 public class Endereco {
-    private String tipo, nome, num, bairro, cidade, estado, pais;
+    private String tipo, nome, num, bairro, cep, cidade, estado, pais;
 
                                                             //getters and setters
 
-    public Endereco(String tipo, String nome, String num, String bairro, String cidade, String estado, String pais) {
+    public Endereco(String tipo, String nome, String num, String bairro, String cep, String cidade, String estado, String pais) {
         this.tipo = tipo;
         this.nome = nome;
         this.num = num;
         this.bairro = bairro;
+        this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
         this.pais = pais;
     }
+    
+    public String getCep() {
+		return cep;
+	}
+    
+    public void setCep(String cep) {
+		this.cep = cep;
+	}
 
     public String getTipo() {
         return tipo;

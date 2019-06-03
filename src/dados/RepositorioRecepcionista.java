@@ -3,6 +3,7 @@ package dados;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import excecoes.PessoaNaoCadastradoException;
 import negocio.Pessoa;
 import negocio.Recepcionista;
 
@@ -25,13 +26,13 @@ public class RepositorioRecepcionista implements IrepositorioPessoas{
 	}
 	
 	@Override
-	public Pessoa getPessoa(String cpf) {
+	public Pessoa getPessoa(String cpf) throws PessoaNaoCadastradoException {
 		for(Recepcionista r : lista) {
 			if(r.getCpf().equals(cpf)) {
 				return r;
 			}
 		}
-		return null;
+		throw new PessoaNaoCadastradoException();
 	}
 	
 	@Override
@@ -39,12 +40,11 @@ public class RepositorioRecepcionista implements IrepositorioPessoas{
 		this.lista.remove((Recepcionista)p);
 	}
 
-	
-	public static RepositorioRecepcionista iniciar() {
+	@Override
+	public RepositorioRecepcionista iniciar() {
 		Recepcionista novo = new Recepcionista("nome", "123", "999", LocalDate.now(), "321", null);
 		RepositorioRecepcionista r = new RepositorioRecepcionista();
 		r.add(novo);
 		return r;
-		
 	}
 }
