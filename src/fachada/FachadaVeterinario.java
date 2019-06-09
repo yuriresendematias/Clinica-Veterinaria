@@ -1,6 +1,8 @@
 package fachada;
 
 import negocio.*;
+import negocio.clinica.Atendimento;
+import negocio.clinica.Medicar;
 import negocio.clinica.Procedimento;
 import negocio.clinica.Vacina;
 import negocio.clinica.Vacinacao;
@@ -122,6 +124,29 @@ public class FachadaVeterinario {
 	public void cadastrarProcedimento(double valor, String tipo) {
 		Procedimento p = new Procedimento(valor, tipo);
 		
+		try {
+			this.repPro.adicionar(p);
+		}catch(ProcedimentoJaExisteException e) {
+			//tratar erro
+		}
+	}
+	
+	public void cadastrarProcedimento(double valor, String tipo, int op) {
+		Procedimento p = new Procedimento(valor, tipo);
+		
+		switch(op) {
+			case 1:
+				p = new Atendimento(valor, tipo);
+				break;
+			case 2:
+				p = new Vacinacao(valor, tipo);
+				break;
+			case 3:
+				p = new Medicar(valor, tipo);
+				break;
+			default:
+				break;
+		}
 		try {
 			this.repPro.adicionar(p);
 		}catch(ProcedimentoJaExisteException e) {
