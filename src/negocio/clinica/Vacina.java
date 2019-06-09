@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Vacina {
 	private String lote, nome;
 	private LocalDate validade, fabricacao;
+	private int quantidade;
 	
 	
 	//getters e setters
@@ -39,5 +40,13 @@ public class Vacina {
 	
 	public LocalDate getValidade() {
 		return validade;
+	}
+	
+	public int getQuantidade() {
+		return this.quantidade;
+	}
+	
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 }

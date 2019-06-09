@@ -29,15 +29,11 @@ public class FachadaRecepcionista {
 	
 	public FachadaRecepcionista(String login, String senha) {
 		try {
-			rr = new RepositorioRecepcionista();
-			rr = (RepositorioRecepcionista)rr.iniciar();
+			rr = RepositorioRecepcionista.iniciar();
+			rc = RepositorioCliente.iniciar();
+			rv = RepositorioVeterinario.iniciar();
 			r  = (Recepcionista)Funcionario.login(login, senha, rr);
-			rc = new RepositorioCliente();
-			rc = (RepositorioCliente)rc.iniciar();
-			rv = new RepositorioVeterinario();
-			rv = (RepositorioVeterinario)rv.iniciar();
-		}//adicionar catch para RepositorioRecepcionista.iniciar();
-		catch(PessoaNaoCadastradoException ex) {
+		}catch(PessoaNaoCadastradoException ex) {
 			//tratar o erro
 		}
 	}

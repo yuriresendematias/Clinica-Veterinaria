@@ -1,0 +1,7 @@
+package dados;
+
+public interface IrepositorioProcedimentos {
+	void adicionar();
+	void remover();
+	void atualizar(Procedimento p, Procedimento novo);
+}

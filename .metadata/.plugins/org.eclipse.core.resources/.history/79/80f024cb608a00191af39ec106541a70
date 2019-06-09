@@ -1,0 +1,89 @@
+package fachada;
+
+import negocio.*;
+import negocio.clinica.Procedimento;
+import negocio.clinica.Vacina;
+import negocio.clinica.Vacinacao;
+import dados.*;
+import excecoes.AnimalNaoCadastradoException;
+import excecoes.PessoaNaoCadastradoException;
+import excecoes.ProcedimentoNaoAgendadoException;
+import excecoes.VacinaNaoCadastradaException;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class FachadaVeterinario {
+	private Veterinario veterinario;
+	private RepositorioVeterinario repVet;
+	private RepositorioCliente repCli;
+	private RepositorioProcedimentos repPro;
+	private RepositorioRecepcionista repRec;
+	private RepositorioVacinas repVacinas;
+	
+	
+	public FachadaVeterinario (String login, String senha){
+		try {
+			this.repVet = RepositorioVeterinario.iniciar();
+			this.repCli = RepositorioCliente.iniciar();
+			this.repRec = RepositorioRecepcionista.iniciar();
+			this.repPro = RepositorioProcedimentos.iniciar();
+			this.repVacinas = RepositorioVacinas.iniciar();
+			this.veterinario = (Veterinario)Veterinario.login(login, senha, this.repVet);
+			
+		}catch(PessoaNaoCadastradoException e) {
+			//tratar o erro
+		}
+	}
+	
+	
+	public void atender(String nomeAnimal, String cpfCliente, String nomeProcedimento) {
+		
+	}
+	
+	public void vacinar(String nomeAnimal, String cpfCliente, ArrayList<String> vacinas, ArrayList<String> lote) {
+		try {
+			Cliente c = (Cliente)this.repCli.getPessoa(cpfCliente);
+			Animal a = c.getAnimal(nomeAnimal);
+			Vacinacao p = (Vacinacao)this.veterinario.getProcedimento(a, "vacinacao");
+			
+			if(p.getData().equals(LocalDate.now())) {
+			
+				for (int i = 0; i < vacinas.size(); i++) {
+					Vacina v = this.repVacinas.getVacina(vacinas.get(i), lote.get(i));
+					
+				}
+			
+			}
+			
+			
+		}catch(PessoaNaoCadastradoException e) {
+			//tratar erro
+		} catch (AnimalNaoCadastradoException e) {
+			// tratar erro
+		} catch (VacinaNaoCadastradaException e) {
+			// tratar erro
+		} catch (ProcedimentoNaoAgendadoException e) {
+			// tratar erro
+		}
+	}
+	
+	public void adicionarProcedimento() {
+		
+	}
+	
+	public void removerProcetimento() {
+		
+	}
+	
+	public void cadastrarProcedimento() {
+		
+	}
+	
+	public void removerProcedimento() {
+		
+	}
+	
+	
+
+}

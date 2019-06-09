@@ -40,8 +40,8 @@ public class RepositorioRecepcionista implements IrepositorioPessoas{
 		this.lista.remove((Recepcionista)p);
 	}
 
-	@Override
-	public RepositorioRecepcionista iniciar() {
+	
+	public static RepositorioRecepcionista iniciar() {
 		Recepcionista novo = new Recepcionista("nome", "123", "999", LocalDate.now(), "321", null);
 		RepositorioRecepcionista r = new RepositorioRecepcionista();
 		r.add(novo);

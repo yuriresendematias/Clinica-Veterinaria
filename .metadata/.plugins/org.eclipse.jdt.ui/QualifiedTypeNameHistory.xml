@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="negocio.Funcionario"/>
+    <fullyQualifiedTypeName name="dados.RepositorioCliente"/>
+    <fullyQualifiedTypeName name="dados.RepositorioRecepcionista"/>
+    <fullyQualifiedTypeName name="dados.RepositorioProcedimentos"/>
+    <fullyQualifiedTypeName name="negocio.Veterinario"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="excecoes.VacinaNaoCadastradaException"/>
+    <fullyQualifiedTypeName name="negocio.clinica.Vacina"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="negocio.clinica.Vacinacao"/>
+    <fullyQualifiedTypeName name="dados.RepositorioVacinas"/>
+    <fullyQualifiedTypeName name="excecoes.VacinaInsulficienteException"/>
+    <fullyQualifiedTypeName name="excecoes.PessoaNaoCadastradoException"/>
+    <fullyQualifiedTypeName name="negocio.clinica.Procedimento"/>
+    <fullyQualifiedTypeName name="excecoes.ProcedimentoNaoAgendadoException"/>
+    <fullyQualifiedTypeName name="excecoes.ProcedimentoJaExisteException"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,18 @@
+package fachada;
+
+import negocio.*;
+ 
+
+public class FachadaVeterinario {
+	private Veterinario veterinario;
+	private Cliente cliente;
+	private Animal animal;
+	private RepositorioVeteriario repVet;
+	
+	public FachadaVeterinario (){
+		this.
+	}
+	
+	
+
+}

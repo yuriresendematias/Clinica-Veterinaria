@@ -40,8 +40,7 @@ public class RepositorioCliente implements IrepositorioPessoas {
         throw new PessoaNaoCadastradoException();
     }
     
-    @Override
-    public IrepositorioPessoas iniciar() {
+    public static RepositorioCliente iniciar() {
     	return new RepositorioCliente();
     }
 }

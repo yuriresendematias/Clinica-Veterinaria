@@ -1,0 +1,19 @@
+package fachada;
+
+import negocio.*;
+import dados.*;
+
+public class FachadaVeterinario {
+	private Veterinario veterinario;
+	private Cliente cliente;
+	private Animal animal;
+	private RepositorioVeterinario repVet;
+	
+	public FachadaVeterinario (String login, String senha){
+		this.repVet.iniciar();
+		this.veterinario = (Veterinario) Veterinario.login(login, senha, this.repVet);
+	}
+	
+	
+
+}

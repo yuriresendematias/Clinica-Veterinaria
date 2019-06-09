@@ -1,5 +1,6 @@
 package dados;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excecoes.PessoaNaoCadastradoException;
@@ -44,8 +45,12 @@ public class RepositorioVeterinario implements IrepositorioPessoas{
 		}
 		throw new PessoaNaoCadastradoException();
 	}
-	@Override
-	public IrepositorioPessoas iniciar() {
-		return new RepositorioVeterinario();
+	
+	
+	public static RepositorioVeterinario iniciar() {
+		Veterinario v = new Veterinario("nomeVeterinario", "000", "555", LocalDate.now(), "222", null);
+		RepositorioVeterinario r = new RepositorioVeterinario();
+		r.add(v);
+		return r;
 	}
 }

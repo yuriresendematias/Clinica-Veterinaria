@@ -8,6 +8,4 @@ public interface IrepositorioPessoas {
     void remover(Pessoa p);
     void atualizar(Pessoa p, Pessoa nova);
     Pessoa getPessoa(String cpf) throws PessoaNaoCadastradoException;
-    IrepositorioPessoas iniciar();
-
 }

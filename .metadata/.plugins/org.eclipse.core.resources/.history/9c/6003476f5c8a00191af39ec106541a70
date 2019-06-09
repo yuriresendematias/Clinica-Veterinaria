@@ -1,0 +1,9 @@
+package dados;
+
+import java.util.ArrayList;
+
+public class RepositorioVacinas{
+	private ArrayList<Vacina> lista;
+	
+	
+}

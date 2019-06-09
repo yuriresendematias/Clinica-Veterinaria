@@ -1,0 +1,14 @@
+package dados;
+
+import java.util.ArrayList;
+import negocio.clinica.Vacina;
+
+public class RepositorioVacinas{
+	private ArrayList<Vacina> lista;
+	
+	public RepositorioVacinas() {
+		this.lista = new ArrayList<Vacina>();
+	}
+	
+	
+}
