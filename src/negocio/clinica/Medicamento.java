@@ -2,40 +2,36 @@ package negocio.clinica;
 
 import java.time.LocalDate;
 
-public class Medicamento {
-	private String nome;
-	private LocalDate validade, fabricacao;
+public class Medicamento extends Produto{
+	private double dose;
+
 	
-	public LocalDate getFabricacao() {
-		return fabricacao;
+	//construtor
+	public Medicamento(String nome, double dose, LocalDate validade, LocalDate fabricacao, int quantidade, double valor) {
+		super(nome, validade, fabricacao, quantidade, valor);
+		this.dose = dose;
 	}
 	
-	public LocalDate getValidade() {
-		return validade;
+	
+	//getters e setters
+	
+	public void setDose(double dose) {
+		this.dose = dose;
 	}
 	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setFabricacao(LocalDate fabricacao) {
-		this.fabricacao = fabricacao;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public void setValidade(LocalDate validade) {
-		this.validade = validade;
+	public double getDose() {
+		return dose;
 	}
 	
 
+	//
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		Medicamento m = (Medicamento)obj;
 		
-		if(this.getNome().equals(m.getNome()) ){
+		if(this.getNome().equals(m.getNome()) && this.dose == ((Medicamento)obj).getDose() ){
 			return true;
 		}
 		return false;

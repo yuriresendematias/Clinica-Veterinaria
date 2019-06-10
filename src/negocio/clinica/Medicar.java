@@ -1,36 +1,48 @@
 package negocio.clinica;
 
+import java.util.ArrayList;
+
+import dados.RepositorioMedicamentos;
+import excecoes.ProdutoInsulficienteException;
+
 public class Medicar extends Procedimento{
-	private Medicamento medicamento;
-	private double dose;
+	private ArrayList<Medicamento> medicamentos;
 
 	public Medicar(double valor, String tipo) {
 		super(valor, tipo);
 	}
 	
-	public Medicamento getMedicamento() {
-		return medicamento;
+	//atualiza o repositorio de medicamentos
+	public void medicar(RepositorioMedicamentos r) throws ProdutoInsulficienteException{
+		for (Medicamento m : medicamentos) {
+			if(m.getQuantidade() < 1) {
+				throw new ProdutoInsulficienteException();
+			}
+			Medicamento nova = m;									//copia a vacina
+			nova.setQuantidade(m.getQuantidade() - 1);				//diminui 1 da quantidade da vacina
+			
+			r.atualizar(m, nova);									//atualiza a quantidade no repositorio
+		}	
+		
 	}
 	
-	public void setMedicamento(Medicamento medicamento) {
-		this.medicamento = medicamento;
+	//adiciona um medicamento a lista de medicamentos que serao aplicados no animal
+	public void addMedicamento(Medicamento m) {
+		this.medicamentos.add(m);
 	}
 	
-	public double getDose() {
-		return dose;
+	public ArrayList<Medicamento> getMedicamentos() {
+		return medicamentos;
 	}
 	
-	public void setDose(double dose) {
-		this.dose = dose;
-	}
+
 	
 	@Override
 	public boolean equals(Object obj) {
 		if( this.getTipo() == ((Procedimento)obj).getTipo() && 
 				this.getProficional().equals(((Procedimento)obj).getProficional()) &&
 				this.getAnimal().equals(((Procedimento)obj).getAnimal()) &&
-				this.getData().equals(((Procedimento)obj).getData()) &&
-				this.getMedicamento().equals(((Medicar)obj).getMedicamento()) ){
+				this.getData().equals(((Procedimento)obj).getData()) ){
 		
 				return true;
 		}

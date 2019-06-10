@@ -3,28 +3,32 @@ package negocio.clinica;
 import java.util.ArrayList;
 
 import dados.RepositorioVacinas;
-import excecoes.VacinaInsulficienteException;
+import excecoes.ProdutoInsulficienteException;
 
 public class Vacinacao extends Procedimento{
-	private ArrayList<Vacina> vacinas;
-	
-	public Vacinacao(double valor, String tipo) {	
-		super(valor, tipo);
+	private ArrayList<Vacina> vacinas;			//lista de vacinas que serao aplicadas nno animal
+
+	//construtor
+	public Vacinacao(String tipo) {	
+		super(0, tipo);
 		this.vacinas = new ArrayList<Vacina>();
 	}
 
+	//adiciona a vacina a lista de vacinas que serão aplicadas no anomal
 	public void addVacina(Vacina v) {
 		this.vacinas.add(v);
 	}
 	
+	//retorna todas as vacinas que serão aplicadas no animal
 	public ArrayList<Vacina> getVacinas() {
 		return vacinas;
 	}
 	
-	public void vacinar(RepositorioVacinas r) throws VacinaInsulficienteException{
+	//atualiza o repositorio de vacinas apos a aplicação das vacinas no animal
+	public void vacinar(RepositorioVacinas r) throws ProdutoInsulficienteException{
 		for (Vacina v : vacinas) {
 			if(v.getQuantidade() < 1) {
-				throw new VacinaInsulficienteException();
+				throw new ProdutoInsulficienteException();
 			}
 			Vacina nova = v;									//copia a vacina
 			nova.setQuantidade(v.getQuantidade() - 1);			//diminui 1 da quantidade da vacina
@@ -44,8 +48,7 @@ public class Vacinacao extends Procedimento{
 		if(	this.getTipo().equals(v.getTipo()) && 
 			this.getProficional().equals(v.getProficional()) &&
 			this.getAnimal().equals(v.getAnimal()) &&
-			this.getData().equals(v.getData()) && 
-			this.getVacinas().equals(v.getVacinas())) {
+			this.getData().equals(v.getData())) {
 			
 			return true;
 		}

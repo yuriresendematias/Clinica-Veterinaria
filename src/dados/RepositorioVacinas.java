@@ -2,38 +2,46 @@ package dados;
 
 import java.util.ArrayList;
 
-import excecoes.VacinaNaoCadastradaException;
+import excecoes.ProdutoNaoCadastradoException;
+import negocio.clinica.Produto;
 import negocio.clinica.Vacina;
 
-public class RepositorioVacinas{
+public class RepositorioVacinas implements IrepositorioProdutos{
 	private ArrayList<Vacina> lista;
 	
 	public RepositorioVacinas() {
 		this.lista = new ArrayList<Vacina>();
 	}
-	
-	public void adicionar(Vacina v) {
-		this.lista.add(v);
+
+
+	@Override
+	public void adicionar(Produto p) {
+		this.lista.add((Vacina)p);
 	}
-	
-	public void remover(Vacina v) {
+
+	@Override
+	public void remover(Produto v) {
 		this.lista.remove(v);
+		
+	}
+
+	@Override
+	public void atualizar(Produto v, Produto nova) {
+		this.remover(v);
+		this.adicionar(nova);
 	}
 	
-	public void atualizar(Vacina v, Vacina nova) {
-		this.lista.remove(v);
-		this.lista.add(nova);
-	}
-	
-	public Vacina getVacina(String nome, String lote) throws VacinaNaoCadastradaException{
+	@Override
+	public Vacina getProduto(String nome, String lote) throws ProdutoNaoCadastradoException{
 		for (Vacina vacina : lista) {
 			if (vacina.getNome().equals(nome) && vacina.getLote().equals(lote)){
 				return vacina;
 			}
 		}
 		
-		throw new VacinaNaoCadastradaException();
+		throw new ProdutoNaoCadastradoException();
 	}
+	
 	
 	public static RepositorioVacinas iniciar() {
 		return new RepositorioVacinas();
