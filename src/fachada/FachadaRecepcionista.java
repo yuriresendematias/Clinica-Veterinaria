@@ -18,7 +18,7 @@ import negocio.Recepcionista;
 import negocio.Veterinario;
 import negocio.clinica.Procedimento;
 
-public class FachadaRecepcionista {
+public class FachadaRecepcionista implements Ifachada {
 	private RepositorioCliente rc;
 	private RepositorioRecepcionista rr;
 	private RepositorioVeterinario rv;
@@ -27,15 +27,18 @@ public class FachadaRecepcionista {
 	private Cliente c;
 	private Veterinario v;
 	
-	public FachadaRecepcionista(String login, String senha) {
-		try {
+	public FachadaRecepcionista() {
+		
 			rr = RepositorioRecepcionista.iniciar();
 			rc = RepositorioCliente.iniciar();
 			rv = RepositorioVeterinario.iniciar();
-			r  = (Recepcionista)Funcionario.login(login, senha, rr);
-		}catch(PessoaNaoCadastradoException ex) {
-			//tratar o erro
-		}
+
+	}
+	
+	@Override
+	public FachadaRecepcionista login(String login, String senha) throws PessoaNaoCadastradoException{
+		r  = (Recepcionista)Funcionario.login(login, senha, rr);
+		return this;
 	}
 	
 	

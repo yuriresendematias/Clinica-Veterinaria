@@ -18,7 +18,7 @@ import excecoes.ProdutoNaoCadastradoException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class FachadaVeterinario {
+public class FachadaVeterinario implements Ifachada{
 	private Veterinario veterinario;
 	private RepositorioVeterinario repVet;
 	private RepositorioCliente repCli;
@@ -28,22 +28,21 @@ public class FachadaVeterinario {
 	private RepositorioMedicamentos repMedicamentos;
 	
 	//construtor
-	public FachadaVeterinario (String login, String senha){
-		try {
-			this.repVet = RepositorioVeterinario.iniciar();
-			this.repCli = RepositorioCliente.iniciar();
-			this.repRec = RepositorioRecepcionista.iniciar();
-			this.repPro = RepositorioProcedimentos.iniciar();
-			this.repVacinas = RepositorioVacinas.iniciar();
-			this.repMedicamentos = RepositorioMedicamentos.iniciar();
-			this.veterinario = (Veterinario)Veterinario.login(login, senha, this.repVet);
-			
-		}catch(PessoaNaoCadastradoException e) {
-			//tratar o erro
-		}
+	public FachadaVeterinario (){
+		this.repVet = RepositorioVeterinario.iniciar();
+		this.repCli = RepositorioCliente.iniciar();
+		this.repRec = RepositorioRecepcionista.iniciar();
+		this.repPro = RepositorioProcedimentos.iniciar();
+		this.repVacinas = RepositorioVacinas.iniciar();
+		this.repMedicamentos = RepositorioMedicamentos.iniciar();
 	}
 	
-	
+	@Override
+	public FachadaVeterinario login(String login, String senha) throws PessoaNaoCadastradoException{
+		this.veterinario = (Veterinario)Veterinario.login(login, senha, this.repVet);
+		return this;
+		
+	}
 
 	
 	

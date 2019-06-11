@@ -20,11 +20,14 @@ public abstract class Funcionario extends Pessoa {
      */
     public static Funcionario login(String cpf, String senha, IrepositorioPessoas r) throws PessoaNaoCadastradoException{
     	if(r.getPessoa(cpf) instanceof Funcionario) {
-        	  return (Funcionario)r.getPessoa(cpf);
-        }else {
-        	throw new PessoaNaoCadastradoException();
-        }
-       
+    		Funcionario f = (Funcionario)r.getPessoa(cpf);
+    		if(f.getSenha().equals(senha)) {
+    			return f;
+    		}
+    	}
+    	
+    	throw new PessoaNaoCadastradoException();
+    	
     }
 
 

@@ -10,7 +10,7 @@ public class Teste {
     public static void main(String[] args) {
 	
     	
-    	
+    	/*
     	
         FachadaRecepcionista recep = new FachadaRecepcionista("123", "321");
         
@@ -25,6 +25,6 @@ public class Teste {
         
         vet.agendarProcedimento("vacinacao", "nomeAnimal", "cpf", LocalDate.now());
         
-        
+        */
     }
 }
