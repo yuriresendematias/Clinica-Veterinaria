@@ -8,7 +8,7 @@ import negocio.clinica.Procedimento;
 public class Animal {
 	private String nome, raca;
 	private double peso;
-	private LocalDate dataNascmento;
+	private LocalDate dataNascimento;
 	private ArrayList<Procedimento> historico;
 	private Cliente dono;
 
@@ -16,7 +16,7 @@ public class Animal {
 		this.historico = new ArrayList<Procedimento>();
 		this.nome = nome;
 		this.dono = dono;
-		this.dataNascmento = dn;
+		this.dataNascimento = dn;
 		this.peso = 0;
 	}
 	
@@ -32,7 +32,7 @@ public class Animal {
 													//Getters e Setters
 	
 	public LocalDate getDataNascmento() {
-		return dataNascmento;
+		return dataNascimento;
 	}
 	
 	public Cliente getDono() {
@@ -52,7 +52,7 @@ public class Animal {
 	}
 	
 	public void setDataNascmento(LocalDate dataNascmento) {
-		this.dataNascmento = dataNascmento;
+		this.dataNascimento = dataNascmento;
 	}
 	
 	public void setDono(Cliente dono) {

@@ -2,6 +2,7 @@ package fachada;
 
 import java.security.spec.ECFieldF2m;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import dados.RepositorioCliente;
 import dados.RepositorioProcedimentos;
@@ -125,7 +126,26 @@ public class FachadaRecepcionista implements Ifachada {
 		return null;
 	}
 	
-	public Recepcionista getRecepcionista() {
-		return this.r;
+
+	/**
+	 * @param cpf
+	 * @return um cliente cadastrado no sistema
+	 * @throws PessoaNaoCadastradoException
+	 */
+	public Cliente pesquisarCliente(String cpf) throws PessoaNaoCadastradoException {
+		Cliente c = (Cliente) this.rc.getPessoa(cpf);
+		return c;
 	}
+	
+	/**
+	 * 
+	 * @return a lista de clientes cadastrados no sistema
+	 */
+	public ArrayList<Cliente> listarClientes() {
+		ArrayList<Cliente> clientes = rc.getPessoas();
+		return clientes;
+	}
+	
+	
+	
 }

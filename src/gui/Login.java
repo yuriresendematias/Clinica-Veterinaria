@@ -60,21 +60,22 @@ public class Login extends JFrame {
 				try {
 					r = new FachadaRecepcionista();
 					r = r.login(loginTf.getText(), senhaPf.getText());
-					JOptionPane.showMessageDialog(null, "login recepcionista!");
-					//iniciar a tela do recepcionista
+					//JOptionPane.showMessageDialog(null, "login recepcionista!");
+					new InicioRecepcionista((FachadaRecepcionista)r).setVisible(true);
+					dispose();
 				}
 				catch(PessoaNaoCadastradoException ex) {
 						try {
 							r = new FachadaVeterinario();
 							r = r.login(loginTf.getText(), senhaPf.getText());
-							JOptionPane.showMessageDialog(null, "Login veterinario!");
+							//JOptionPane.showMessageDialog(null, "Login veterinario!");
 							//iniciar a tela do veterinario
+							dispose();
 						} catch (PessoaNaoCadastradoException e1) {
 							JOptionPane.showMessageDialog(null, "Login ou senha incorretos!");
 						}	
 				}
-			}
-				
+			}				
 		}
 		);
 		btnLogin.setBounds(165, 148, 89, 23);
@@ -92,6 +93,7 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.exit(EXIT_ON_CLOSE);
 			}
 		});
 		btnNewButton.setBounds(165, 182, 89, 23);

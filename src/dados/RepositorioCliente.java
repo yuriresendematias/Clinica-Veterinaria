@@ -1,9 +1,12 @@
 package dados;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excecoes.PessoaNaoCadastradoException;
+import negocio.Animal;
 import negocio.Cliente;
+import negocio.Endereco;
 import negocio.Pessoa;
 
 public class RepositorioCliente implements IrepositorioPessoas {
@@ -40,7 +43,23 @@ public class RepositorioCliente implements IrepositorioPessoas {
         throw new PessoaNaoCadastradoException();
     }
     
+    @Override
+    public ArrayList getPessoas(){
+    	return this.lista;
+    }
+    
     public static RepositorioCliente iniciar() {
-    	return new RepositorioCliente();
+    	Endereco end = new Endereco("Rua", "nao sei o nome da rua", "23454", "onde judas perdeu as botas", "55123-333", "garanhuns", "pernambuco", "Brasil ");
+		Cliente c = new Cliente("nome do cliente nao sei de que", "111", "(87)98112-4567", LocalDate.now(), end);
+		Animal a = new Animal("zezin", "raça", c, LocalDate.of(2000, 11, 20) );
+		Animal b = new Animal("nome animal", "cachorro", c, LocalDate.now());
+		
+		c.addAnimal(a);
+		c.addAnimal(b);
+    	
+		RepositorioCliente r = new RepositorioCliente();
+		r.add(c);
+				
+		return r;
     }
 }

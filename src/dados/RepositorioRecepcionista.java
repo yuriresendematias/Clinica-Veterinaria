@@ -47,4 +47,9 @@ public class RepositorioRecepcionista implements IrepositorioPessoas{
 		r.add(novo);
 		return r;
 	}
+
+	@Override
+	public ArrayList getPessoas() {
+		return this.lista;
+	}
 }

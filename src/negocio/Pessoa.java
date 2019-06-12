@@ -67,7 +67,7 @@ public abstract class Pessoa {
         if(this.end == null) {
             return "Nome:" +this.getNome()+
                     "\nCPF:" + this.getCpf()+
-                    "\nEndereÃ§o:" +
+                    "\nEndereço: "+
                     "\nData de Nascimento:" + this.getDataNascimento()+
                     "\nTelefone:"+ this.getTelefone();
         }

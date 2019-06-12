@@ -86,10 +86,10 @@ public class Endereco {
     public String toString(){
         return this.getTipo() +
                 " " +this.getNome() +
-                ", nÂº " + this.getNum() +
-                ", " +this.getBairro()+
-                ", " +this.getCidade()+
-                ", " +this.getEstado()+
-                ", " +this.getPais();
+                ", nº " + this.getNum() +
+                "\nBairro: " +this.getBairro()+
+                "\nCidade: " +this.getCidade()+
+                "\nEstado: " +this.getEstado()+
+                "\nPaís: " +this.getPais();
     }
 }

@@ -53,4 +53,10 @@ public class RepositorioVeterinario implements IrepositorioPessoas{
 		r.add(v);
 		return r;
 	}
+
+
+	@Override
+	public ArrayList getPessoas() {
+		return this.lista;
+	}
 }
