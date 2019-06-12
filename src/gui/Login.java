@@ -60,7 +60,6 @@ public class Login extends JFrame {
 				try {
 					r = new FachadaRecepcionista();
 					r = r.login(loginTf.getText(), senhaPf.getText());
-					//JOptionPane.showMessageDialog(null, "login recepcionista!");
 					new InicioRecepcionista((FachadaRecepcionista)r).setVisible(true);
 					dispose();
 				}
@@ -69,7 +68,7 @@ public class Login extends JFrame {
 							r = new FachadaVeterinario();
 							r = r.login(loginTf.getText(), senhaPf.getText());
 							//JOptionPane.showMessageDialog(null, "Login veterinario!");
-							//iniciar a tela do veterinario
+							new InicioVeterinario((FachadaVeterinario)r).setVisible(true);
 							dispose();
 						} catch (PessoaNaoCadastradoException e1) {
 							JOptionPane.showMessageDialog(null, "Login ou senha incorretos!");

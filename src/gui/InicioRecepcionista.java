@@ -1,7 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -10,15 +9,11 @@ import javax.swing.border.EmptyBorder;
 
 import excecoes.PessoaNaoCadastradoException;
 import fachada.FachadaRecepcionista;
-import negocio.Animal;
-import negocio.Cliente;
-import negocio.Endereco;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Label;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 
 public class InicioRecepcionista extends JFrame {
@@ -50,8 +45,7 @@ public class InicioRecepcionista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!cpfTf.getText().equals("")) {
 					try {
-						Cliente c = r.pesquisarCliente(cpfTf.getText());
-						new TelaCliente(c,recepcionista).setVisible(true);
+						new TelaCliente(recepcionista.pesquisarCliente(cpfTf.getText()),recepcionista).setVisible(true);
 						dispose();
 					} catch (PessoaNaoCadastradoException e1) {
 						JOptionPane.showMessageDialog(null, "Cliente nao cadastrado!");
@@ -90,7 +84,7 @@ public class InicioRecepcionista extends JFrame {
 		JButton btnAgenda = new JButton("Agenda");
 		btnAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AgendaVeterinario(recepcionista).setVisible(true);
+				new ListaVeterinarios(recepcionista).setVisible(true);
 				dispose();
 			}
 		});

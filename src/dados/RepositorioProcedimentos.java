@@ -3,7 +3,9 @@ package dados;
 import java.util.ArrayList;
 
 import excecoes.ProcedimentoJaExisteException;
+import negocio.clinica.Atendimento;
 import negocio.clinica.Procedimento;
+import negocio.clinica.Vacinacao;
 
 public class RepositorioProcedimentos {
 	private ArrayList<Procedimento> procedimentos;
@@ -36,7 +38,30 @@ public class RepositorioProcedimentos {
 	}
 	
 	public static RepositorioProcedimentos iniciar() {
-		return new RepositorioProcedimentos();
+		
+		Procedimento p = new Atendimento(50, "Atendimento");
+		Procedimento l = new Vacinacao("Vacinacao");
+		Procedimento q = new Procedimento(25, "Banho");
+		
+		RepositorioProcedimentos r = new RepositorioProcedimentos();
+		try {
+			r.adicionar(p);
+			r.adicionar(q);
+			r.adicionar(l);
+
+			
+			
+		} catch (ProcedimentoJaExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return r;
+	}
+
+	public ArrayList<Procedimento> getList() {
+		return procedimentos;
 	}
 	
 }

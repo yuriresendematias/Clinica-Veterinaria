@@ -8,6 +8,7 @@ import dados.RepositorioProcedimentos;
 import dados.RepositorioRecepcionista;
 import dados.RepositorioVacinas;
 import dados.RepositorioVeterinario;
+import excecoes.PessoaJaCadastradaException;
 import excecoes.ProcedimentoJaExisteException;
 import excecoes.ProcedimentoNaoAgendadoException;
 import negocio.clinica.Atendimento;
@@ -70,7 +71,7 @@ public class Veterinario extends Funcionario{
 		r.remover(m);
 	}
 	
-	public void cadastrarRecepcionista(Recepcionista r, RepositorioRecepcionista rep) {
+	public void cadastrarRecepcionista(Recepcionista r, RepositorioRecepcionista rep) throws PessoaJaCadastradaException{
 		rep.add(r);
 	}
 	

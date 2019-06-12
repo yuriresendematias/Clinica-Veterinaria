@@ -9,6 +9,7 @@ import negocio.clinica.Vacina;
 import negocio.clinica.Vacinacao;
 import dados.*;
 import excecoes.AnimalNaoCadastradoException;
+import excecoes.PessoaJaCadastradaException;
 import excecoes.PessoaNaoCadastradoException;
 import excecoes.ProcedimentoJaExisteException;
 import excecoes.ProcedimentoNaoAgendadoException;
@@ -54,7 +55,7 @@ public class FachadaVeterinario implements Ifachada{
 		return new Endereco(tipo, nome, num, bairro, cep, cidade, estado, pais);
 	}
 
-	public void cadastrarRecepcionista(String nome, String cpf, String telefone, LocalDate dataNascimento, String senha, Endereco end) {
+	public void cadastrarRecepcionista(String nome, String cpf, String telefone, LocalDate dataNascimento, String senha, Endereco end) throws PessoaJaCadastradaException{
 		Recepcionista r = new Recepcionista(nome, cpf, telefone, dataNascimento, senha, end);
 		this.veterinario.cadastrarRecepcionista(r, this.repRec);
 	}

@@ -29,11 +29,10 @@ public class FachadaRecepcionista implements Ifachada {
 	private Veterinario v;
 	
 	public FachadaRecepcionista() {
-		
 			rr = RepositorioRecepcionista.iniciar();
 			rc = RepositorioCliente.iniciar();
 			rv = RepositorioVeterinario.iniciar();
-
+			rp = RepositorioProcedimentos.iniciar();
 	}
 	
 	@Override
@@ -45,51 +44,36 @@ public class FachadaRecepcionista implements Ifachada {
 	
 	public void cadastrarCliente(String nome, String cpf, String fone, LocalDate dn,
 									String tipoLogradouro, String nomeLogradouro, String num,
-									String bairro, String cep, String cidade, String estado, String pais) {
+									String bairro, String cep, String cidade, String estado, String pais) throws PessoaJaCadastradaException {
 		
 		Endereco end = new Endereco(tipoLogradouro, nomeLogradouro, num, bairro, cep, cidade, estado, pais);
 		Cliente c = new Cliente(nome, cpf, fone, dn, end);
 		
-		try {
-			this.r.cadastrarCliente(c, rc);
-		}catch(PessoaJaCadastradaException e) {
-			//tratar o erro
-		}
+		this.r.cadastrarCliente(c, rc);
 	}
 	
-	public void cadastrarAnimal(String cpfDono, String nomeAnimal, String raca, LocalDate dn) {
-		try {
-			Cliente c = (Cliente) this.rc.getPessoa(cpfDono);
-			Animal a = new Animal(nomeAnimal, raca, c, dn);
-			c.addAnimal(a);
-		}catch(PessoaNaoCadastradoException e) {
-			//tratar o erro
-		}//animal ja cadastrado
+	public void cadastrarAnimal(String cpfDono, String nomeAnimal, String raca, LocalDate dn) throws PessoaNaoCadastradoException{
+		Cliente c = (Cliente) this.rc.getPessoa(cpfDono);
+		Animal a = new Animal(nomeAnimal, raca, c, dn);
+		c.addAnimal(a);
 	}
 	
 
-	public void agendarProcedimento(String nomeProcedimento, LocalDate data, String nomeAnimal, String cpfDono, String cpfVeterinario) {
-		try{
-			Procedimento p = this.rp.getProcedimento(nomeProcedimento);
-			Veterinario v = (Veterinario)this.rv.getPessoa(cpfVeterinario);
-			Cliente c = (Cliente)this.rc.getPessoa(cpfDono);
-			Animal a = c.getAnimal(nomeAnimal);
-			
-			p.setData(data);
-			p.setAnimal(a);
-			p.setProficional(v);
-		}catch(AnimalNaoCadastradoException e) {
-			//tratar o erro
-		}catch(PessoaNaoCadastradoException e) {
-			//tratr o erro
-		}
-		//procedimento nao cadastratado
+	public void agendarProcedimento(String nomeProcedimento, LocalDate data, String nomeAnimal, String cpfDono, String cpfVeterinario)throws  PessoaNaoCadastradoException, AnimalNaoCadastradoException{
+		Procedimento p = this.rp.getProcedimento(nomeProcedimento);
+		Veterinario v = (Veterinario)this.rv.getPessoa(cpfVeterinario);
+		Cliente c = (Cliente)this.rc.getPessoa(cpfDono);
+		Animal a = c.getAnimal(nomeAnimal);
+		
+		p.setData(data);
+		p.setAnimal(a);
+		p.setProficional(v);
 	}
 	
 	/*
 	 * remarca um procedimento agendado
 	 */
-	public void remarcarProcedimento(String nomeProcedimento, LocalDate data, LocalDate novaData, String nomeAnimal, String cpfDono, String cpfVeterinario) {
+	public void remarcarProcedimento(String nomeProcedimento, LocalDate data, LocalDate novaData, String nomeAnimal, String cpfDono, String cpfVeterinario) throws PessoaNaoCadastradoException, AnimalNaoCadastradoException {
 		this.cancelarProcedimento(nomeProcedimento, data, nomeAnimal, cpfDono, cpfVeterinario);
 		this.agendarProcedimento(nomeProcedimento, novaData, nomeAnimal, cpfDono, cpfVeterinario);
 	}
@@ -146,6 +130,22 @@ public class FachadaRecepcionista implements Ifachada {
 		return clientes;
 	}
 	
-	
+	/**
+	 * 
+	 * @return a lista de veterinarios cadastrados no sistema
+	 */
+	public ArrayList<Veterinario> listarVeterinarios(){
+		ArrayList<Veterinario> veterinarios = rv.getPessoas();
+		return veterinarios;
+	}
+
+	public void atualizarCliente(Cliente novo) throws PessoaNaoCadastradoException {
+		rc.atualizar(rc.getPessoa(novo.getCpf()), novo);
+		
+	}
+
+	public ArrayList<Procedimento> listarProcedimentos() {
+		return this.rp.getList();
+	}
 	
 }
